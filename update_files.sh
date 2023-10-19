@@ -1,4 +1,5 @@
 #!/bin/bash
+projectName=$1
 
 cat >build.sh<<EOL
 #!/bin/bash
@@ -8,6 +9,11 @@ EOL
 cat >run.sh<<EOL
 #!/bin/bash
 python manage.py runserver
+EOL
+
+
+cat >README.md<<EOL
+# $projectName
 EOL
 
 

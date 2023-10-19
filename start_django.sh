@@ -1,14 +1,16 @@
 #!/bin/bash
 
-appName="apple5"
-mkdir $appName
-cd $appName
+projectName="apple5"
+apps=('product' 'category' 'order' 'cart')
+
+mkdir $projectName
+cd $projectName
 
 . ../install_django.sh
 . ../required_files.sh
-. ../folders.sh
-. ../django_apps.sh
-. ../update_files.sh
+. ../folders.sh $apps
+. ../django_apps.sh $apps
+. ../update_files.sh $projectName
 
 code .
 bash run.sh

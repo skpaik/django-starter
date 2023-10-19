@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apps=('product' 'category' 'order' 'cart')
+apps=$1
 
 for app in "${apps[@]}"
 do

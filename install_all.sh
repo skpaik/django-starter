@@ -1,10 +1,10 @@
 #!/bin/bash
 
-appName="apple4"
+projectName="apple4"
 
-mkdir $appName
+mkdir $projectName
 
-cd $appName
+cd $projectName
 
 python3 -m venv .venv
 source .venv/bin/activate
