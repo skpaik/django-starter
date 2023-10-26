@@ -6,9 +6,18 @@ cat >build.sh<<EOL
 EOL
 
 
+cat >start.sh<<EOL
+#!/bin/bash
+chmod +x run.sh
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install django
+EOL
+
+
 cat >run.sh<<EOL
 #!/bin/bash
-python manage.py runserver
+python3 manage.py runserver
 EOL
 
 
@@ -17,7 +26,7 @@ cat >README.md<<EOL
 EOL
 
 
-cat >.env.sample<<EOL
+read -r -d '' env_sample << EOM
 DEBUG=1
 SECRET_KEY=foo
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
@@ -28,11 +37,18 @@ SQL_PASSWORD=hello_django
 SQL_HOST=db
 SQL_PORT=5432
 DATABASE=postgres
+EOM
+
+cat >.env<<EOL
+$env_sample
+EOL
+
+cat >.env.sample<<EOL
+$env_sample
 EOL
 
 
-
-cat >.dockerignore<<EOL
+read -r -d '' dockerignore << EOM
 *.yml
 .git
 .gitignore
@@ -42,10 +58,14 @@ cat >.dockerignore<<EOL
 *.sh
 *.log
 .env
+EOM
+
+cat >.dockerignore<<EOL
+$dockerignore
 EOL
 
 
-cat >Dockerfile<<EOL
+read -r -d '' Dockerfile << EOM
 # Tweak the base image by installing pipenv
 FROM python:3.10 as base
 RUN pip install pipenv
@@ -66,10 +86,14 @@ WORKDIR /usr/src/app
 
 RUN pipenv install --system --deploy
 RUN python manage.py collectstatic --no-input
+EOM
+
+cat >Dockerfile<<EOL
+$Dockerfile
 EOL
 
 
-cat >docker-compose.yml<<EOL
+read -r -d '' docker_compose << EOM
 version: '3.8'
 
 services:
@@ -95,4 +119,8 @@ services:
 
 volumes:
   postgres_data:
+EOM
+
+cat >docker-compose.yml<<EOL
+$docker_compose
 EOL
