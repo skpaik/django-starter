@@ -6,9 +6,18 @@ cat >build.sh<<EOL
 EOL
 
 
+cat >start.sh<<EOL
+#!/bin/bash
+chmod +x run.sh
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install django
+EOL
+
+
 cat >run.sh<<EOL
 #!/bin/bash
-python manage.py runserver
+python3 manage.py runserver
 EOL
 
 

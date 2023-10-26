@@ -14,4 +14,5 @@ cd $projectName
 . ../migrate_django.sh
 
 code .
+bash start.sh
 bash run.sh
