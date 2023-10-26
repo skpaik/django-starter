@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projectName="apple-ecom2"
+projectName="apple"
 apps=('product' 'category' 'order' 'cart')
 
 mkdir $projectName
