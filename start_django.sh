@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projectName="apple5"
+projectName="apple-ecom2"
 apps=('product' 'category' 'order' 'cart')
 
 mkdir $projectName
@@ -11,6 +11,7 @@ cd $projectName
 . ../folders.sh $apps
 . ../django_apps.sh $apps
 . ../update_files.sh $projectName
+. ../migrate_django.sh
 
 code .
 bash run.sh

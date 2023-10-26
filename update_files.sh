@@ -17,7 +17,7 @@ cat >README.md<<EOL
 EOL
 
 
-cat >.env.sample<<EOL
+read -r -d '' env_sample << EOM
 DEBUG=1
 SECRET_KEY=foo
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
@@ -28,6 +28,13 @@ SQL_PASSWORD=hello_django
 SQL_HOST=db
 SQL_PORT=5432
 DATABASE=postgres
+EOM
+
+cat >.env<<EOL
+$env_sample
+EOL
+cat >.env.sample<<EOL
+$env_sample
 EOL
 
 
