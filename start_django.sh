@@ -11,8 +11,12 @@ cd $projectName
 . ../folders.sh $apps
 . ../django_apps.sh $apps
 . ../update_files.sh $projectName
-. ../migrate_django.sh
+
+pip freeze >requirements.txt
 
 code .
-bash start.sh
+
+bash prepare.sh
+bash migrate_db.sh
+
 bash run.sh
