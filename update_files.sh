@@ -6,9 +6,18 @@ cat >build.sh<<EOL
 EOL
 
 
-cat >start.sh<<EOL
+cat >migrate_db.sh<<EOL
+#!/bin/bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+EOL
+
+
+cat >prepare.sh<<EOL
 #!/bin/bash
 chmod +x run.sh
+chmod +x build.sh
+chmod +x migrate_db.sh
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install django
