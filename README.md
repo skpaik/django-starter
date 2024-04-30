@@ -1,9 +1,7 @@
 # django-starter
 
 ## Start any Django Project Quickly
-
-- Update project name in `start_django.sh` file in line 3
-- Update list of app names in `start_django.sh` file in line 4
+- Change the `PROJECT_NAME` and `APP_LIST` in `.env` file
 
 Run following command to create boilerplate
 

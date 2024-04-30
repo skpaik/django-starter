@@ -6,7 +6,7 @@ projectName=$PROJECT_NAME
 
 IFS=',' read -ra apps <<< "$APP_LIST"
 
-# rm -r .git
+rm -r .git
 mkdir $projectName
 cd $projectName
 
