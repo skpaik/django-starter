@@ -1,12 +1,13 @@
 #!/bin/bash
 
-source .env
+source ../.env
 
 projectName=$PROJECT_NAME
 
 IFS=',' read -ra apps <<< "$APP_LIST"
 
-rm -rf .git
+cd ..
+# rm -rf .git
 mkdir $projectName
 cd $projectName
 
