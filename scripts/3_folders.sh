@@ -14,7 +14,7 @@ mkdir "templates/pages"
 
 
 apps=$1
-
+echo "${apps[@]}"
 for app in "${apps[@]}"
 do
   mkdir "templates/pages/$app"

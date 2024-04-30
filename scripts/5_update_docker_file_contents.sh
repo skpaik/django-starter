@@ -1,66 +1,6 @@
 #!/bin/bash
 projectName=$1
 
-cat >build.sh<<EOL
-#!/bin/bash
-EOL
-
-
-cat >migrate_db.sh<<EOL
-#!/bin/bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-
-python3 manage.py syncdb --noinput
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
-
-EOL
-
-
-cat >prepare.sh<<EOL
-#!/bin/bash
-chmod +x run.sh
-chmod +x build.sh
-chmod +x migrate_db.sh
-source .venv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install django
-EOL
-
-
-cat >run.sh<<EOL
-#!/bin/bash
-python3 manage.py runserver
-EOL
-
-
-cat >README.md<<EOL
-# $projectName
-EOL
-
-
-read -r -d '' env_sample << EOM
-DEBUG=1
-SECRET_KEY=foo
-DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-SQL_ENGINE=django.db.backends.postgresql
-SQL_DATABASE=hello_django_dev
-SQL_USER=hello_django
-SQL_PASSWORD=hello_django
-SQL_HOST=db
-SQL_PORT=5432
-DATABASE=postgres
-EOM
-
-cat >.env<<EOL
-$env_sample
-EOL
-
-cat >.env.sample<<EOL
-$env_sample
-EOL
-
-
 read -r -d '' dockerignore << EOM
 *.yml
 .git
